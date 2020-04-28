@@ -4,12 +4,12 @@ import React from "react";
 import "./styles/app.css";
 
 //components
-import Test from "./components/Test";
+import Timer from "./components/Timer";
 
 function App() {
   return (
     <div className="App">
-      <Test />
+      <Timer />
     </div>
   );
 }
