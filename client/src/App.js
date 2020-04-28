@@ -10,11 +10,15 @@ import screenShare from './assets/screen-share.png';
 import options from './assets/options.png';
 import phone from './assets/phone.png';
 import add from './assets/add.png';
+import previous from './assets/previous.png';
+import pause from './assets/pause.png';
+import next from './assets/next.png';
 // users
 import user1 from './assets/lea.png';
 import user2 from './assets/benett.png';
 import user3 from './assets/tina.png';
-
+// poses
+import pose1 from './assets/yoga.png';
 
 //components
 // import Timer from "./components/Timer";
@@ -73,8 +77,8 @@ function App() {
               </button>
             </div>
             <div className="vid-chat__users">
-              {dummy.users.map(user => {
-                return <User user={user} />
+              {dummy.users.map((user, index) => {
+                return <User key={user.name + index} user={user} />
               })}
             </div>
           </div>
@@ -82,8 +86,36 @@ function App() {
         </div>
 
         <div className="display">
+          <div className="display__container">
+            <div className="display__header">
+              <div className="display__info">
+                <h2 className="display__stretch-info">Sun Salutation | Round 1/4</h2>
+                <h1 className="display__pose-info">Pose 3/9</h1>
+              </div>
+              <div className="display__timer">
+                {/* TODO timer will go in here */}
+              06:57
+            </div>
+            </div>
+            <div className="display__pose">
+              <img className="display__pose-img" src={pose1} alt="current pose" />
+              <p className="display__pose-name">Standing Half Forward Fold</p>
+            </div>
+          </div>
 
+          <div className="display__controller">
+            <button className="display__btn">
+              <img className="display__icon" src={previous} alt="previous pose" />
+            </button>
+            <button className="display__btn">
+              <img className="display__icon display__icon--large" src={pause} alt="previous pose" />
+            </button>
+            <button className="display__btn">
+              <img className="display__icon" src={next} alt="previous pose" />
+            </button>
+          </div>
         </div>
+
       </div>
     </div>
   );
