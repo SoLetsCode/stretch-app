@@ -25,12 +25,14 @@ io.on("connection", (socket) => {
   });
 });
 
-io.on("connection", (socket) => {
-  socket.on("chat message", (msg) => {
-    console.log("message: " + msg);
-    io.emit("chat message", msg);
-  });
-});
+counter = 59;
+setInterval(() => {
+  io.emit("timer", counter--);
+
+  if (counter === 0) {
+    counter = 59;
+  }
+}, 1000);
 
 http.listen(5000, () => {
   console.log("listening on port 5000");
