@@ -18,9 +18,9 @@ import user1 from "./assets/lea.png";
 import user2 from "./assets/benett.png";
 import user3 from "./assets/tina.png";
 // poses
-import pose1 from "./assets/yoga.png";
-import pose2 from "./assets/yoga2.png";
-import pose3 from "./assets/yoga3.png";
+import pose1 from "./assets/yoga.png"; //Standing Half Forward Fold
+import pose2 from "./assets/yoga2.png"; //Child's Pose
+import pose3 from "./assets/yoga3.png"; //Soaring Tree
 
 //socket.io
 import io from "socket.io-client";
@@ -33,7 +33,7 @@ const socket = io("http://localhost:5001");
 
 function App() {
   const [timer, setTimer] = useState(0);
-  const [pose, setPose] = useState(0)
+  const [pose, setPose] = useState(0);
 
   const dummy = {
     users: [
@@ -50,11 +50,7 @@ function App() {
         img: user3,
       },
     ],
-    poses: [
-      pose1,
-      pose2,
-      pose3
-    ]
+    poses: [pose1, pose2, pose3],
   };
 
   useEffect(() => {
@@ -69,11 +65,12 @@ function App() {
 
   useEffect(() => {
     socket.once("next", (msg) => {
-      let queue = pose + 1
-      if (queue === dummy.poses.length ) {
-        queue = 0
+      console.log(`pose ${msg}`);
+      let queue = pose + 1;
+      if (queue === dummy.poses.length) {
+        queue = 0;
       }
-      setPose(queue)
+      setPose(msg);
     });
 
     return function cleanup() {
@@ -81,7 +78,6 @@ function App() {
     };
   });
 
-  console.log(pose)
   return (
     <div className="App">
       {/* layout for the background */}
@@ -126,7 +122,7 @@ function App() {
                 <h2 className="display__stretch-info">
                   Sun Salutation | Round 1/4
                 </h2>
-                <h1 className="display__pose-info">Pose 3/9</h1>
+                <h1 className="display__pose-info">Pose {pose}/9</h1>
               </div>
               <div className="display__timer">
                 {/* TODO timer will go in here */}
@@ -136,10 +132,18 @@ function App() {
             <div className="display__pose">
               <img
                 className="display__pose-img"
-                src={dummy.poses[pose]}
+                src={dummy.poses[pose - 1]}
                 alt="current pose"
               />
-              <p className="display__pose-name">Standing Half Forward Fold</p>
+              <p className="display__pose-name">
+                {pose === 1
+                  ? "Standing Half Forward Fold"
+                  : pose === 2
+                  ? "Child's Pose"
+                  : pose === 3
+                  ? "Soaring Eagle"
+                  : ""}
+              </p>
             </div>
           </div>
 
