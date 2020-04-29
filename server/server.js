@@ -18,7 +18,7 @@ app.get("/api/index", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-let interval = 5; //change this to set time
+let interval = 10; //change this to set time
 
 let counter = interval;
 let pose = 1;
