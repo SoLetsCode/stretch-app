@@ -1,0 +1,26 @@
+{
+  "name": "stretch-app",
+  "version": "1.0.0",
+  "description": "This app was created by <b>Team 13 - Stay Home Office</b> for the <b>April 2020 BrainStation x Microsoft Hackathon.</b>",
+  "main": "index.js",
+  "scripts": {
+    "install:client": "cd client && npm install",
+    "install:server": "cd server && npm install",
+    "install:all": "cd client && npm install && cd ../server && npm install",
+    "start": "cd server && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoLetsCode/stretch-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoLetsCode/stretch-app/issues"
+  },
+  "homepage": "https://github.com/SoLetsCode/stretch-app#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  }
+}

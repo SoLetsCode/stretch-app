@@ -6,6 +6,9 @@ Data Scientists: Bernice L, Reza N</br>
 UX Designer: Neimat K</br>
 Web Developers: Derek S, Jason H</br>
 
+## Starting The App
+
+
 ## Challenge
 The purpose of this challenge was to find a solution to make improvements on work from home situations. Our team's approach was to facilitate team building between coworkers to increase morale and improve the mental health of employees.
 
