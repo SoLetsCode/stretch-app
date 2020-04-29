@@ -51,9 +51,18 @@ function App() {
       },
     ],
     poses: [
-      pose1,
-      pose2,
-      pose3
+      {
+        name: 'Standing Half Forward Fold',
+        img: pose1
+      },
+      {
+        name: 'Child\'s Pose',
+        img: pose2
+      },
+      {
+        name: 'Steps',
+        img: pose3
+      }
     ]
   };
 
@@ -136,10 +145,10 @@ function App() {
             <div className="display__pose">
               <img
                 className="display__pose-img"
-                src={dummy.poses[pose]}
+                src={dummy.poses[pose].img}
                 alt="current pose"
               />
-              <p className="display__pose-name">Standing Half Forward Fold</p>
+              <p className="display__pose-name">{dummy.poses[pose].name}</p>
             </div>
           </div>
 
