@@ -7,6 +7,9 @@ UX Designer: Neimat K</br>
 Web Developers: Derek S, Jason H</br>
 
 ## Starting The App
+To start the app, run these commands in the root directory.</br>
+First install all the dependencies by running `npm run install:all`</br>
+Then run `npm run start`
 
 
 ## Challenge
