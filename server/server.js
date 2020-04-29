@@ -18,12 +18,12 @@ app.get("/api/index", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-let counter = 10;
+let counter = 5;
 
 setInterval(() => {
   counter--;
   if (counter === 0) {
-    counter = 10;
+    counter = 5;
     io.emit("next");
   }
 }, 1000);

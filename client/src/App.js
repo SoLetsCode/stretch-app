@@ -52,13 +52,14 @@ function App() {
   };
 
   useEffect(() => {
-    socket.on("timer", (time) => {
+    socket.once("timer", (time) => {
       setTimer(time);
+      console.log(time);
     });
   });
 
   useEffect(() => {
-    socket.on("next", (msg) => {
+    socket.once("next", (msg) => {
       console.log("next");
     });
   });
