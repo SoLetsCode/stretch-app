@@ -196,6 +196,7 @@ body {
   &__pose-img {
     width: 320px;
     height: 220px;
+    object-fit: contain;
   }
 
   &__controller {

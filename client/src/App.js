@@ -33,6 +33,7 @@ const socket = io("http://localhost:5001");
 
 function App() {
   const [timer, setTimer] = useState(0);
+  const [pose, setPose] = useState(0)
 
   const dummy = {
     users: [
@@ -49,12 +50,16 @@ function App() {
         img: user3,
       },
     ],
+    poses: [
+      pose1,
+      pose2,
+      pose3
+    ]
   };
 
   useEffect(() => {
     socket.on("timer", (time) => {
       setTimer(time);
-      console.log(time);
     });
 
     return function cleanup() {
@@ -64,7 +69,11 @@ function App() {
 
   useEffect(() => {
     socket.once("next", (msg) => {
-      console.log("next");
+      let queue = pose + 1
+      if (queue === dummy.poses.length ) {
+        queue = 0
+      }
+      setPose(queue)
     });
 
     return function cleanup() {
@@ -72,6 +81,7 @@ function App() {
     };
   });
 
+  console.log(pose)
   return (
     <div className="App">
       {/* layout for the background */}
@@ -126,7 +136,7 @@ function App() {
             <div className="display__pose">
               <img
                 className="display__pose-img"
-                src={pose1}
+                src={dummy.poses[pose]}
                 alt="current pose"
               />
               <p className="display__pose-name">Standing Half Forward Fold</p>
