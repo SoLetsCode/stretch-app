@@ -33,7 +33,7 @@ const socket = io("http://localhost:5001");
 
 function App() {
   const [timer, setTimer] = useState(0);
-  const [pose, setPose] = useState(0)
+  const [pose, setPose] = useState(0);
 
   const dummy = {
     users: [
@@ -52,18 +52,18 @@ function App() {
     ],
     poses: [
       {
-        name: 'Standing Half Forward Fold',
-        img: pose1
+        name: "Standing Half Forward Fold",
+        img: pose1,
       },
       {
-        name: 'Child\'s Pose',
-        img: pose2
+        name: "Child's Pose",
+        img: pose2,
       },
       {
-        name: 'Steps',
-        img: pose3
-      }
-    ]
+        name: "Steps",
+        img: pose3,
+      },
+    ],
   };
 
   useEffect(() => {
@@ -77,12 +77,15 @@ function App() {
   });
 
   useEffect(() => {
-    socket.once("next", (msg) => {
-      let queue = pose + 1
-      if (queue === dummy.poses.length ) {
-        queue = 0
-      }
-      setPose(queue)
+    socket.once("next", (pose) => {
+      console.log(pose);
+
+      setPose(pose - 1);
+      // let queue = pose + 1;
+      // if (queue === dummy.poses.length) {
+      //   queue = 0;
+      // }
+      // setPose(queue);
     });
 
     return function cleanup() {
@@ -90,7 +93,6 @@ function App() {
     };
   });
 
-  console.log(pose)
   return (
     <div className="App">
       {/* layout for the background */}
@@ -135,7 +137,7 @@ function App() {
                 <h2 className="display__stretch-info">
                   Sun Salutation | Round 1/4
                 </h2>
-                <h1 className="display__pose-info">Pose 3/9</h1>
+                <h1 className="display__pose-info">Pose {pose + 1}/9</h1>
               </div>
               <div className="display__timer">
                 {/* TODO timer will go in here */}

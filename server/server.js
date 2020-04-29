@@ -18,13 +18,20 @@ app.get("/api/index", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-let counter = 10;
+let interval = 5; //change this to set time
+
+let counter = interval;
+let pose = 1;
 
 setInterval(() => {
   counter--;
   if (counter === 0) {
-    counter = 10;
-    io.emit("next");
+    counter = interval;
+    pose++;
+    if (pose > 3) {
+      pose = 1;
+    }
+    io.emit("next", pose);
   }
 }, 1000);
 
@@ -34,6 +41,7 @@ setInterval(() => {
 
 io.on("connection", (socket) => {
   console.log("a user connected");
+  io.emit("next", pose);
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
