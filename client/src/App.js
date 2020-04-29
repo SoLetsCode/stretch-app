@@ -52,16 +52,24 @@ function App() {
   };
 
   useEffect(() => {
-    socket.once("timer", (time) => {
+    socket.on("timer", (time) => {
       setTimer(time);
       console.log(time);
     });
+
+    return function cleanup() {
+      socket.removeEventListener("timer");
+    };
   });
 
   useEffect(() => {
     socket.once("next", (msg) => {
       console.log("next");
     });
+
+    return function cleanup() {
+      socket.removeEventListener("next");
+    };
   });
 
   return (

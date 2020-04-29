@@ -18,22 +18,22 @@ app.get("/api/index", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-let counter = 5;
+let counter = 10;
 
 setInterval(() => {
   counter--;
   if (counter === 0) {
-    counter = 5;
+    counter = 10;
     io.emit("next");
   }
 }, 1000);
 
+setInterval(() => {
+  io.emit("timer", counter);
+}, 1000);
+
 io.on("connection", (socket) => {
   console.log("a user connected");
-
-  setInterval(() => {
-    socket.broadcast.emit("timer", counter);
-  }, 1000);
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
