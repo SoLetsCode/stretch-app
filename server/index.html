@@ -63,6 +63,10 @@
         socket.on("timer", function (msg) {
           $(".timer").html(msg);
         });
+
+        socket.on("next", () => {
+          console.log("next");
+        });
       });
     </script>
   </body>
